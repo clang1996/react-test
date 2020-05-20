@@ -47,11 +47,63 @@ const NotesSection = styled.section`
 
 `
 const TypeSection = styled.section`
-border: 1px solid blue;
+    font-size: 24px;
+    > ul{
+    display: flex;
+       > li{
+       width: 50%;
+       padding: 16px 0;
+       text-align: center;
+       background: #c4c4c4;
+       position: relative;
+       &.selected::after{
+            display: block;
+            content: '';
+            height: 3px;
+            background: #333;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            left: 0;
+         }
+       }
+    }
 `
 const NumberPadSection = styled.section`
-border: 1px solid black;
-
+     display: flex;
+     flex-direction: column;
+      > .output {
+      background: #fff;
+      font-size: 36px;
+      line-height: 72px;
+      text-align: right;
+      padding: 0 16px;
+      box-shadow: inset 0 -5px 5px -5px  rgba(0,0,0,0.25),
+                  inset 0 5px 5px -5px  rgba(0,0,0,0.25);
+      }
+      > .pad {
+         > button {
+         font-size: 18px;
+         float: left;
+         width: 25%;
+         height: 64px;
+         border: none;
+            &.ok{
+                height: 128px;
+                float: right;
+            }
+            &.zero{
+                width: 50%;
+            }
+            &:nth-child(1){background: #f2f2f2;}
+            &:nth-child(2),&:nth-child(5){background: #e0e0e0;}
+            &:nth-child(3),&:nth-child(6),&:nth-child(9){background: #d3d3d3;}
+            &:nth-child(4),&:nth-child(7),&:nth-child(10){background: #c1c1c1;}
+            &:nth-child(8),&:nth-child(11),&:nth-child(13){background: #b8b8b8;}
+            &:nth-child(12){background: #9a9a9a;}
+            &:nth-child(14){background: #a9a9a9;}
+         }
+      }
 `
 function Money() {
   return (
@@ -73,28 +125,29 @@ function Money() {
           <input type="text" placeholder="请在这里写备注噢~"/>
         </label>
       </NotesSection>
-      <TypeSection>type
+      <TypeSection>
       <ul>
-        <li>支出</li>
-        <li>收入</li></ul>
+        <li className="selected">支出</li>
+        <li>收入</li>
+      </ul>
       </TypeSection>
       <NumberPadSection>
-        <div>100</div>
-        <div>
+        <div className="output">100</div>
+        <div className="pad">
           <button>1</button>
           <button>2</button>
           <button>3</button>
-          <button>删除</button>
+          <button className="delete">删除</button>
           <button>4</button>
           <button>5</button>
           <button>6</button>
-          <button>清空</button>
+          <button className="clear clearfix">清空</button>
           <button>7</button>
           <button>8</button>
           <button>9</button>
-          <button>OK</button>
-          <button>0</button>
-          <button>.</button>
+          <button className="ok">OK</button>
+          <button className="zero">0</button>
+          <button className="dot">.</button>
         </div>
       </NumberPadSection>
     </Layout>
