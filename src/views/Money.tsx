@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import {NoteSection} from './Money/NoteSection';
 import {NumberPadSection} from './Money/NumberPadSection';
 import {TagsSection} from './Money/TagsSection';
-import {TypeSection} from './Money/TypesSection';
+import {TypeSection} from './Money/TypeSection';
 
 const MyLayout = styled(Layout)`
     display: flex;
@@ -16,12 +16,7 @@ function Money() {
     <MyLayout>
       <TagsSection/>
       <NoteSection/>
-      <TypeSection>
-        <ul>
-          <li className="selected">支出</li>
-          <li>收入</li>
-        </ul>
-      </TypeSection>
+      <TypeSection/>
       <NumberPadSection>
         <div className="output">100</div>
         <div className="pad">
