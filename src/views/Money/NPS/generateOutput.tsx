@@ -1,4 +1,4 @@
-const generateOutput = (text:string,output='0') =>{
+const generateOutput = (text: string, output = '0') => {
   switch (text) {
     case '0':
     case '1':
@@ -10,21 +10,29 @@ const generateOutput = (text:string,output='0') =>{
     case '7':
     case '8':
     case '9':
-      if (output === '0') {return text}
-      return output + text
-    case '删除':
-      if (output.length===1) {return '0'}
-      else { return output.slice(0,-1) || ''}
+      if (output === '0') {
+        return text;
+      } else {
+        return output + text;
+      }
     case '.':
-      if (output.indexOf('.')>=0){return output;}
-      else {return output+'.'}
-    case 'OK':
-      console.log('ok');
-      break;
+      if (output.indexOf('.') >= 0) {
+        return output;}
+      else {
+        console.log('.')
+        return output + '.';
+      }
+    case '删除':
+      if (output.length === 1) {
+        return '';
+      } else {
+        return output.slice(0, -1) || '';
+      }
     case '清空':
-      return('0')
+      return '';
     default:
-      return ''
+      return '';
   }
-}
-export {generateOutput}
+};
+
+export {generateOutput};

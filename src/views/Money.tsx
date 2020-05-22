@@ -11,7 +11,6 @@ const MyLayout = styled(Layout)`
     flex-direction: column;
 `;
 
-
 type Type = '-' | '+'
 
 function Money() {
@@ -23,14 +22,17 @@ function Money() {
       amount: 0
     }
   );
+  const onChange = (obj: Partial<typeof selected>) => {   //obj是selected类型的部分类型
+    setSelected({...selected, ...obj});
+  };
   return (
     <MyLayout>
-      <TagsSection value={selected.tags} onChange={(tags) => setSelected({...selected, tags: tags})}/>
-      <NoteSection value={selected.note} onChange={(note) => setSelected({...selected, note: note})}/>
-      <TypeSection value={selected.type} onChange={(type) => setSelected({...selected, type: type})}/>
+      <TagsSection value={selected.tags} onChange={tags => onChange({tags})}/>
+      <NoteSection value={selected.note} onChange={note => onChange({note})}/>
+      <TypeSection value={selected.type} onChange={type => onChange({type})}/>
       <NumberPadSection value={selected.amount}
-                        onOk={()=>{}}
-                        onChange={(amount) => setSelected({...selected, amount:amount})}/>
+                        onOk={() => {}}
+                        onChange={(amount) => onChange({amount})}/>
     </MyLayout>
   );
 }
