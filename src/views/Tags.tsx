@@ -1,6 +1,6 @@
 import {Layout} from '../components/Layout';
 import React from 'react';
-import {useTags} from 'useTags';
+import {useTags} from 'views/useTags';
 import styled from 'styled-components';
 import {Icon} from '../components/Icon';
 import {Link} from 'react-router-dom';
@@ -39,14 +39,15 @@ const Space = styled.div`
 `;
 
 function Tags() {
+  // eslint-disable-next-line
   const {tags, setTags} = useTags();
   return (
     <Layout>
       <TagList>
         {tags.map(tag =>
-          <li key={tag}>
+          <li key={tag.id}>
             <Link to={'/tags/' + tag}>
-              <span className="onLine"> {tag}</span>
+              <span className="onLine"> {tag.name}</span>
               <Icon name="right"/>
             </Link>
           </li>)}
