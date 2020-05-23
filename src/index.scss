@@ -35,3 +35,8 @@ button {
   width: 1.5em;
   height: 1.5em;
 }
+.onLine {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow:ellipsis;
+}
