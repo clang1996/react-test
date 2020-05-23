@@ -3,18 +3,21 @@ import React from 'react';
 import {useTags} from 'useTags';
 import styled from 'styled-components';
 import {Icon} from '../components/Icon';
+import {Link} from 'react-router-dom';
 
 const TagList = styled.ol`
   font-size: 16px;
   background: #fff;
   > li{
-      display: flex;
       border-bottom: 2px solid #d5d5d5;
       line-height: 20px;
-      padding: 12px 16px 12px 0; 
       margin-left: 16px;
-      justify-content: space-between;
+      > a{
+      display: flex;
+      padding: 12px 16px 12px 0; 
       align-items: center;
+      justify-content: space-between;
+      }
   }
 `;
 const Button = styled.button`
@@ -33,17 +36,19 @@ const Center = styled.div`
 `;
 const Space = styled.div`
     height: 16px;
-`
+`;
 
-function Labels() {
+function Tags() {
   const {tags, setTags} = useTags();
   return (
     <Layout>
       <TagList>
         {tags.map(tag =>
           <li key={tag}>
-            <span className="onLine"> {tag}</span>
-            <Icon name="right"/>
+            <Link to={'/tags/' + tag}>
+              <span className="onLine"> {tag}</span>
+              <Icon name="right"/>
+            </Link>
           </li>)}
       </TagList>
       <Center>
@@ -57,4 +62,4 @@ function Labels() {
   );
 }
 
-export {Labels};
+export {Tags};
