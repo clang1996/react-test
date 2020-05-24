@@ -5,6 +5,9 @@ import {Layout} from '../components/Layout';
 import {Icon} from '../components/Icon';
 import {Button} from '../components/Button';
 import styled from 'styled-components';
+import {Input} from '../components/Input';
+import {Center} from '../components/Center';
+import {Space} from '../components/Space';
 
 type Params = {
   id: string
@@ -17,7 +20,12 @@ const Topbar = styled.header`
     font-size: 16px;
     background: #fff;
     align-items: center;
-`
+`;
+const InputWrapper = styled.div`
+  background: #fff;
+  margin: 18px 0;
+  padding: 12px 24px;
+`;
 const Tag: React.FC = (props) => {
   const {findTag} = useTags();
   let {id} = useParams<Params>();
@@ -29,15 +37,17 @@ const Tag: React.FC = (props) => {
         <span>编辑标签</span>
         <div></div>
       </Topbar>
-      <div>
-        <label>
-          <span>标签名</span>
-          <input type="text" placeholder="请在这里写备注噢~"/>
-        </label>
-      </div>
-      <Button>
-        <span>删除标签</span>
-      </Button>
+      <InputWrapper>
+        <Input label="标签名" type="text" placeholder="请输入标签名~" value={tag.name} />
+      </InputWrapper>
+      <Center>
+        <Space/>
+        <Space/>
+        <Space/>
+        <Button>
+          <span>删除标签</span>
+        </Button>
+      </Center>
     </Layout>
   );
 };
