@@ -59,7 +59,6 @@ const TagsSection: React.FC<Props> = (props) => {
   return (
     <Wrapper>
       <ol>
-
         {tags.map(tag =>
           <li key={tag.id} onClick={
             () => {onToggleTag(tag.id);}}
