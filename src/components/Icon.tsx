@@ -6,7 +6,7 @@ require('icons/statistics.svg');
 
 type Props = {
   name: string
-}
+} & React.SVGAttributes<SVGElement>
 
 let importAll = (requireContext: __WebpackModuleApi.RequireContext) => requireContext.keys().forEach(requireContext);
 try {
@@ -16,8 +16,9 @@ try {
 }
 
 const Icon = (props: Props) => {
+  const {name,children,...rest} = props
   return (
-    <svg className="icon">
+    <svg className="icon" {...rest}>
       <use xlinkHref={'#'+props.name}/>
     </svg>
   );
