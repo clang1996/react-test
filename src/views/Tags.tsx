@@ -27,7 +27,7 @@ const TagList = styled.ol`
 
 function Tags() {
   // eslint-disable-next-line
-  const {tags, setTags} = useTags();
+  const {tags,onAddTag} = useTags();
   return (
     <Layout>
       <TagList>
@@ -42,7 +42,7 @@ function Tags() {
       <Center>
         <Space/>
         <Space/>
-        <Button>
+        <Button onClick = {onAddTag}>
           <span>新建标签</span>
         </Button>
       </Center>
