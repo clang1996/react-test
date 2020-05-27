@@ -37,7 +37,7 @@ function Statistics() {
   const {getName} = useTags();
   const hash: { [K: string]: RecordsItem[] } = {};
   const selectedRecords = records.filter(r => r.type === type);
-  selectedRecords.map(r => {
+  selectedRecords.forEach(r => {
     const key = day(r.createAt).format('MM月DD日');
     if (!(key in hash)) {
       hash[key] = [];
@@ -74,6 +74,7 @@ function Statistics() {
               </div>
             </Item>;
           })}
+
         </div>
       )}
     </Layout>
