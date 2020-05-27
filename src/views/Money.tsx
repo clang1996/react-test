@@ -41,7 +41,7 @@ function Money() {
       <TypeSection value={selected.type} onChange={type => onChange({type})}/>
       <NumberPadSection value={selected.amount}
                         onOk={submit}
-                        onChange={(amount) => onChange({amount})}/>
+                        onChange={amount=> onChange({amount})}/>
     </MyLayout>
   );
 }
