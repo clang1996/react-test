@@ -1,7 +1,7 @@
 import {useEffect, useState} from 'react';
 import {useUpdate} from './useUpdate';
 
-type RecordsItem = {
+export type RecordsItem = {
   tagIds: number[]
   note: string
   type: '+' | '-'
