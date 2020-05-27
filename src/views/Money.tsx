@@ -19,7 +19,8 @@ const defaultFormData = {
   note: '',
   type: '-' as Type,
   amount: 0
-}
+};
+
 function Money() {
   const [selected, setSelected] = useState(defaultFormData);
   const onChange = (obj: Partial<typeof selected>) => {   //obj是selected类型的部分类型
@@ -28,9 +29,10 @@ function Money() {
   const {addRecord} = useRecords();
 
   const submit = () => {
-    addRecord(selected);
-    alert('保存成功')
-    setSelected(defaultFormData)
+    if (addRecord(selected)) {
+      alert('保存成功');
+      setSelected(defaultFormData);
+    }
   };
   return (
     <MyLayout>
