@@ -1,27 +1,34 @@
 import {useEffect, useRef, useState} from 'react';
 import {createId} from '../lib/createId';
+import {useUpdate} from './useUpdate';
 
-const defaultTags = [
-  {id: createId(), name: '衣'},
-  {id: createId(), name: '食'},
-  {id: createId(), name: '住'},
-  {id: createId(), name: '行'},
-];
 const useTags = () => {
-  const [tags, setTags] = useState<{ id: number, name: string }[]>(defaultTags);
+  const [tags, setTags] = useState<{ id: number, name: string }[]>([]);
   useEffect(() => {
-    setTags(JSON.parse(window.localStorage.getItem('tags') || '[]'));
-  }, []); //第一次渲染
-  const count = useRef(0);
-  useEffect(() => {
-    count.current += 1;
-  });
-  useEffect(() => {
-    if (count.current>1){
-      console.log('count' + count.current);
-      window.localStorage.setItem('tags', JSON.stringify(tags));
+    let localTags = JSON.parse(window.localStorage.getItem('tags') || '[]')
+    if (localTags.length===0){
+      localTags=[
+        {id: createId(), name: '衣'},
+        {id: createId(), name: '食'},
+        {id: createId(), name: '住'},
+        {id: createId(), name: '行'},
+      ]
     }
-  }, [tags]);
+    setTags(localTags)
+  }, []); //第一次渲染
+  useUpdate(()=>{
+    window.localStorage.setItem('tags', JSON.stringify(tags));
+  },[tags])
+  // const count = useRef(0);
+  // useEffect(() => {
+  //   count.current += 1;
+  // });
+  // useEffect(() => {
+  //   if (count.current>1){
+  //     console.log('count' + count.current);
+  //     window.localStorage.setItem('tags', JSON.stringify(tags));
+  //   }
+  // }, [tags]);
   const onAddTag = () => {
     const tagName = window.prompt('新标签的名称为');
     if (tagName !== null) {
