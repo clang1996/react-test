@@ -6,7 +6,7 @@ const Wrapper = styled.section`
       > .output {
       background: #fff;
       font-size: 36px;
-      line-height: 72px;
+      line-height: 56px;
       text-align: right;
       padding: 0 16px;
       box-shadow: inset 0 -5px 5px -5px  rgba(0,0,0,0.25),
@@ -17,10 +17,10 @@ const Wrapper = styled.section`
          font-size: 18px;
          float: left;
          width: 25%;
-         height: 64px;
+         height: 56px;
          border: none;
             &.ok{
-                height: 128px;
+                height: 112px;
                 float: right;
             }
             &.zero{
@@ -33,6 +33,14 @@ const Wrapper = styled.section`
             &:nth-child(8),&:nth-child(11),&:nth-child(13){background: #b8b8b8;}
             &:nth-child(12){background: #9a9a9a;}
             &:nth-child(14){background: #a9a9a9;}
+         }
+         @media(max-height:570px){
+            > button{
+            height: 48px;
+              &.ok{
+                height: 96px;
+              }
+            }
          }
       }
 `;

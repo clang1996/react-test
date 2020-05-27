@@ -8,8 +8,9 @@ const Wrapper = styled.section`
      flex-grow: 1;
      display: flex;
      flex-direction: column;
-     justify-content: flex-end;
      align-items: flex-start;
+     flex-shrink: 1;
+     overflow: auto;
      > ol {
      margin:0-12px;
         > li{
@@ -18,7 +19,7 @@ const Wrapper = styled.section`
         display: inline-block;
         padding: 3px 18px;
         font-size: 14px;
-        margin: 8px 12px;
+        margin: 3px 12px;
         &.selected{
               background:red;
            }
@@ -30,6 +31,7 @@ const Wrapper = styled.section`
      padding: 0 4px;
      border-bottom: 1px solid #333;
      color:#666;
+     margin-bottom: 12px;
      }
 `;
 type Props = {
@@ -48,9 +50,11 @@ const TagsSection: React.FC<Props> = (props) => {
     }
   };
   const getClass = (tagId: number) => selectedTagIds.indexOf(tagId) >= 0 ? 'selected' : '';
-
   return (
     <Wrapper>
+      <button onClick={onAddTag}>
+        新增标签
+      </button>
       <ol>
         {tags.map(tag =>
           <li key={tag.id} onClick={
@@ -60,9 +64,7 @@ const TagsSection: React.FC<Props> = (props) => {
           </li>
         )}
       </ol>
-      <button onClick={onAddTag}>
-        新增标签
-      </button>
+
     </Wrapper>
   );
 };

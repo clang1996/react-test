@@ -11,7 +11,7 @@ const TypeWrapper = styled.div`
 
 `;
 const DateWrapper = styled.h3`
-     margin-left: 16px;
+    margin-left: 16px;
 `;
 const Item = styled.div`
     display: flex;
@@ -58,23 +58,24 @@ function Statistics() {
       {array.map(([date, records]) =>
         <div>
           <DateWrapper>{date}</DateWrapper>
-          {records.map(r => {
-            return <Item>
-              <div className="tags onLine">
-                {r.tagIds.map(tagId => <span key={tagId}>{getName(tagId)}</span>)
-                         .reduce((result,span,index,array)=>
-                         result.concat(index<array.length-1?[span,'、']:[span]),[]as ReactNode[])}
-              </div>
-              {r.note && <div className="note">{r.note}</div>}
-              <div className="amount">
-                ￥{r.amount}
-              </div>
-              <div className="date">
-                {day(r.createAt).format('MM月DD日')}
-              </div>
-            </Item>;
-          })}
-
+          <div>
+            {records.map(r => {
+              return <Item>
+                <div className="tags onLine">
+                  {r.tagIds.map(tagId => <span key={tagId}>{getName(tagId)}</span>)
+                    .reduce((result, span, index, array) =>
+                      result.concat(index < array.length - 1 ? [span, '、'] : [span]), [] as ReactNode[])}
+                </div>
+                {r.note && <div className="note">{r.note}</div>}
+                <div className="amount">
+                  ￥{r.amount}
+                </div>
+                <div className="date">
+                  {day(r.createAt).format('MM月DD日')}
+                </div>
+              </Item>;
+            })}
+          </div>
         </div>
       )}
     </Layout>
