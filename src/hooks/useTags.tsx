@@ -5,30 +5,20 @@ import {useUpdate} from './useUpdate';
 const useTags = () => {
   const [tags, setTags] = useState<{ id: number, name: string }[]>([]);
   useEffect(() => {
-    let localTags = JSON.parse(window.localStorage.getItem('tags') || '[]')
-    if (localTags.length===0){
-      localTags=[
+    let localTags = JSON.parse(window.localStorage.getItem('tags') || '[]');
+    if (localTags.length === 0) {
+      localTags = [
         {id: createId(), name: '衣'},
         {id: createId(), name: '食'},
         {id: createId(), name: '住'},
         {id: createId(), name: '行'},
-      ]
+      ];
     }
-    setTags(localTags)
+    setTags(localTags);
   }, []); //第一次渲染
-  useUpdate(()=>{
+  useUpdate(() => {
     window.localStorage.setItem('tags', JSON.stringify(tags));
-  },[tags])
-  // const count = useRef(0);
-  // useEffect(() => {
-  //   count.current += 1;
-  // });
-  // useEffect(() => {
-  //   if (count.current>1){
-  //     console.log('count' + count.current);
-  //     window.localStorage.setItem('tags', JSON.stringify(tags));
-  //   }
-  // }, [tags]);
+  }, [tags]);
   const onAddTag = () => {
     const tagName = window.prompt('新标签的名称为');
     if (tagName !== null) {
@@ -52,7 +42,11 @@ const useTags = () => {
   const deleteTag = (id: number) => {
     setTags(tags.filter(tag => tag.id !== id));
   };
-  return {tags, setTags, findTag, onAddTag, updateTag, findTagIndex, deleteTag};
+  const getName = (id: number) => {
+    const tag = tags.filter(tag => tag.id === id)[0];
+    return tag ? tag.name : '';
+  };
+  return {tags, setTags,getName, findTag, onAddTag, updateTag, findTagIndex, deleteTag};
 };
 
 export {useTags};

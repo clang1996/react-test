@@ -9,7 +9,6 @@ const Wrapper = styled.section`
        width: 50%;
        padding: 16px 0;
        text-align: center;
-       background: #c4c4c4;
        position: relative;
        &.selected::after{
             display: block;
