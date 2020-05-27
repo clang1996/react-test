@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useEffect, useRef, useState} from 'react';
 import {createId} from '../lib/createId';
 
 const defaultTags = [
@@ -9,6 +9,25 @@ const defaultTags = [
 ];
 const useTags = () => {
   const [tags, setTags] = useState<{ id: number, name: string }[]>(defaultTags);
+  useEffect(() => {
+    setTags(JSON.parse(window.localStorage.getItem('tags') || '[]'));
+  }, []); //第一次渲染
+  const count = useRef(0);
+  useEffect(() => {
+    count.current += 1;
+  });
+  useEffect(() => {
+    if (count.current>1){
+      console.log('count' + count.current);
+      window.localStorage.setItem('tags', JSON.stringify(tags));
+    }
+  }, [tags]);
+  const onAddTag = () => {
+    const tagName = window.prompt('新标签的名称为');
+    if (tagName !== null) {
+      setTags([...tags, {id: createId(), name: tagName}]);
+    }
+  };
   const findTag = (id: number) => tags.filter(tag => tag.id === id)[0];
   const findTagIndex = (id: number) => {
     let result = -1;
@@ -21,12 +40,12 @@ const useTags = () => {
     return result;
   };
   const updateTag = (id: number, {name}: { name: string }) => {
-    setTags(tags.map(tag=>tag.id === id?{id,name:name}:tag));
+    setTags(tags.map(tag => tag.id === id ? {id, name: name} : tag));
   };
-  const deleteTag = (id:number)=>{
-    setTags(tags.filter(tag=>tag.id!==id))
-  }
-  return {tags, setTags, findTag, updateTag, findTagIndex,deleteTag};
+  const deleteTag = (id: number) => {
+    setTags(tags.filter(tag => tag.id !== id));
+  };
+  return {tags, setTags, findTag, onAddTag, updateTag, findTagIndex, deleteTag};
 };
 
 export {useTags};

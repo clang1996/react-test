@@ -14,27 +14,25 @@ const TagList = styled.ol`
   > li{
       border-bottom: 2px solid #d5d5d5;
       line-height: 20px;
-      margin-left: 16px;
       > a{
       display: flex;
-      padding: 12px 16px 12px 0; 
+      padding: 12px 16px 12px 16px; 
       align-items: center;
       justify-content: space-between;
       }
   }
 `;
 
-
 function Tags() {
   // eslint-disable-next-line
-  const {tags, setTags} = useTags();
+  const {tags,onAddTag, setTags} = useTags();
   return (
     <Layout>
       <TagList>
         {tags.map(tag =>
           <li key={tag.id}>
             <Link to={'/tags/' + tag.id}>
-              <span className="onLine"> {tag.name}</span>
+              <span className="onLine"> {tag.id}:{tag.name}</span>
               <Icon name="right"/>
             </Link>
           </li>)}
@@ -42,7 +40,7 @@ function Tags() {
       <Center>
         <Space/>
         <Space/>
-        <Button>
+        <Button onClick={onAddTag}>
           <span>新建标签</span>
         </Button>
       </Center>
