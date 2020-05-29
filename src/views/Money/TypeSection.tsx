@@ -6,13 +6,12 @@ const Wrapper = styled.section`
     > ul{
        display: flex;
        justify-content: center;
-       height: 60px;
+       height:54px;
        > li{
        display: flex;
        width: 60px;
-       //border: 1px solid red;
        padding-left: 12px;
-       //margin-bottom: 0;
+       padding-bottom: 3px;
        align-items: flex-end;
        text-align: center;
        position: relative;

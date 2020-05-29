@@ -20,8 +20,18 @@ const useTags = () => {
   const onAddTag = () => {
     const tagName = window.prompt('新标签的名称为');
     if (tagName !== null) {
+      if (tagName.trim().length===0){
+        window.alert('标签名不能为空哦~')
+        return false;
+      }
+      if (tagName.length > 8) {
+        window.alert('标签名长度不能大于8个字哦~');
+        return false;
+      }
       setTags([...tags, {id: createId(), name: tagName}]);
+      return true;
     }
+    return true;
   };
   const findTag = (id: number) => tags.filter(tag => tag.id === id)[0];
   const findTagIndex = (id: number) => {
@@ -44,7 +54,7 @@ const useTags = () => {
     const tag = tags.filter(tag => tag.id === id)[0];
     return tag ? tag.name : '';
   };
-  return {tags, setTags,getName, findTag, onAddTag, updateTag, findTagIndex, deleteTag};
+  return {tags, setTags, getName, findTag, onAddTag, updateTag, findTagIndex, deleteTag};
 };
 
 export {useTags};

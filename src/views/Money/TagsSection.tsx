@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import React from 'react';
 import {useTags} from 'hooks/useTags';
+import {Icon} from '../../components/Icon';
 
 const Wrapper = styled.section`
      background-color: #fff;
@@ -15,24 +16,25 @@ const Wrapper = styled.section`
      margin:0-12px;
         > li{
         background-color: #d9d9d9;
-        border-radius:18px;
+        border-radius:16px;
         display: inline-block;
         padding: 3px 18px;
+        min-width: 158px;
         font-size: 14px;
         margin: 3px 12px;
+        text-align: center;
         &.selected{
-              background:red;
+              background:#4ebf80;
            }
+        
         }
      }
-     > button {
-     background: none;
-     border:none;
-     padding: 0 4px;
-     border-bottom: 1px solid #333;
-     color:#666;
-     margin-bottom: 12px;
-     }
+     .icon{
+        color:#333;
+        width: 50px;
+        height: 50px;
+        }
+     
 `;
 type Props = {
   value: number[]
@@ -52,9 +54,9 @@ const TagsSection: React.FC<Props> = (props) => {
   const getClass = (tagId: number) => selectedTagIds.indexOf(tagId) >= 0 ? 'selected' : '';
   return (
     <Wrapper>
-      <button onClick={onAddTag}>
-        新增标签
-      </button>
+      <div>
+        <Icon name="add" onClick={onAddTag}/>
+      </div>
       <ol>
         {tags.map(tag =>
           <li key={tag.id} onClick={
