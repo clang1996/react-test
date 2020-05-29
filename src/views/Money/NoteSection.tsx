@@ -14,12 +14,21 @@ type Props = {
 }
 const NoteSection: React.FC<Props> = (props) => {
   const note = props.value;
-  const onChange:ChangeEventHandler<HTMLInputElement>= (e) => {
-      props.onChange(e.target.value);
+  const onChange: ChangeEventHandler<HTMLInputElement> = (e) => {
+    if (e.target.value.length > 9) {
+      window.alert('备注不要太长哦，9个字以内就好啦~');
+      return false;
+    }
+    props.onChange(e.target.value);
+    return true;
   };
   return (
     <Wrapper>
-      <Input label="备注" type="text" value={note} onChange={onChange}>
+      <Input label="备注 : "
+             type="text"
+             placeholder="在这里写备注~"
+             value={note}
+             onChange={onChange}>
       </Input>
     </Wrapper>
   );
