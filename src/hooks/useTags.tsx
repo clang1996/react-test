@@ -20,8 +20,8 @@ const useTags = () => {
   const onAddTag = () => {
     const tagName = window.prompt('新标签的名称为');
     if (tagName !== null) {
-      if (tagName.trim().length===0){
-        window.alert('标签名不能为空哦~')
+      if (tagName.trim().length === 0) {
+        window.alert('标签名不能为空哦~');
         return false;
       }
       if (tagName.length > 8) {
@@ -48,7 +48,10 @@ const useTags = () => {
     setTags(tags.map(tag => tag.id === id ? {id, name: name} : tag));
   };
   const deleteTag = (id: number) => {
-    setTags(tags.filter(tag => tag.id !== id));
+    if (window.confirm('确定删除该标签吗?')) {
+      setTags(tags.filter(tag => tag.id !== id));
+      window.history.back()
+    }
   };
   const getName = (id: number) => {
     const tag = tags.filter(tag => tag.id === id)[0];

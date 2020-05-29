@@ -14,6 +14,8 @@ const TagList = styled.ol`
   > li{
       border-bottom: 2px solid #d5d5d5;
       line-height: 20px;
+      overflow: auto;
+      
       > a{
       display: flex;
       padding: 12px 16px 12px 16px; 

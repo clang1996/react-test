@@ -16,9 +16,9 @@ const Topbar = styled.header`
     display: flex;
     justify-content: space-between;
     line-height: 20px;
-    padding: 12px 18px;
+    padding: 15px 18px;
     font-size: 16px;
-    background: #fff;
+    background: #4ebf80;
     align-items: center;
 `;
 const InputWrapper = styled.div`
@@ -33,7 +33,7 @@ const Tag: React.FC = () => {
   const tagContent = (tag: { id: number, name: string }) => (
     <div>
       <InputWrapper>
-        <Input label="标签名"
+        <Input label="标签名:"
                type="text"
                placeholder="请输入标签名~"
                value={tag.name}
