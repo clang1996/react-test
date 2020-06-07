@@ -21,13 +21,14 @@ const Item = styled.div`
     line-height: 20px;
     padding: 10px 16px;
     > div{
-      width: 33.3333%;
+      width: 33.33%;
     }
     > .note{
       color: #aaa;  
+      padding-left: 35px ;
     } 
     > .amount{
-      padding-left: 50px ;
+      padding-left: 35px ;
     }
 `;
 
@@ -63,9 +64,6 @@ function Statistics() {
 						return day(date).format('YYYY年MM月DD日');
 				}
 		};
-		const review = function () {
-
-		};
 		return (
 			<Layout>
 					<TypeWrapper>
@@ -85,11 +83,10 @@ function Statistics() {
 																.reduce((result, span, index, array) =>
 																	result.concat(index < array.length - 1 ? [span, ' '] : [span]), [] as ReactNode[])}
 														</div>
-														{r.note ? <div className="note">{r.note}</div> : <div className="onLine">无备注哦</div>}
+														{r.note ? <div className="note">{r.note}</div> : <div className="note onLine">无备注哦</div>}
 														<div className="amount">
 																￥{r.amount}
 														</div>
-
 												</Item>;
 										})}
 								</div>

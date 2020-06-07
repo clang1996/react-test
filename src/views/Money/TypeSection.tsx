@@ -7,6 +7,7 @@ const Wrapper = styled.section`
        display: flex;
        justify-content: center;
        height:54px;
+       margin-bottom: 0;
        > li{
        display: flex;
        width: 60px;

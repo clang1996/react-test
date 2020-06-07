@@ -11,7 +11,7 @@ const MyLayout = styled(Layout)`
     display: flex;
     flex-direction: column;
 `;
-const TypeWrappper = styled.div`
+const TypeWrapper = styled.div`
        background: #4ebf80;
 `
 
@@ -39,9 +39,9 @@ function Money() {
   };
   return (
     <MyLayout>
-      <TypeWrappper>
+      <TypeWrapper>
         <TypeSection value={selected.type} onChange={type => onChange({type})}/>
-      </TypeWrappper>
+      </TypeWrapper>
       <TagsSection value={selected.tagIds} onChange={tagIds => onChange({tagIds})}/>
       <NoteSection value={selected.note} onChange={note => onChange({note})}/>
 
