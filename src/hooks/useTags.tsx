@@ -1,4 +1,4 @@
-import {useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {createId} from '../lib/createId';
 import {useUpdate} from './useUpdate';
 
@@ -6,12 +6,6 @@ const useTags = () => {
   const [tags, setTags] = useState<{ id: number, name: string }[]>([]);
   useEffect(() => {
     let localTags = JSON.parse(window.localStorage.getItem('tags') || '[]');
-    if (localTags.length === 0) {
-      localTags = [
-        {id: createId(), name: '衣'},
-
-      ];
-    }
     setTags(localTags);
   }, []); //第一次渲染
   useUpdate(() => {
