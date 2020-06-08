@@ -11,6 +11,7 @@ import {Statistics} from './views/Statistics';
 import {NoMatch} from './views/NoMatch';
 import styled from 'styled-components';
 import {Tag} from './views/Tag';
+import {Chart} from './views/Chart';
 
 
 const AppWrapper = styled.div`
@@ -30,6 +31,9 @@ function App() {
           </Route>
           <Route exact path="/money">
             <Money/>
+          </Route>
+          <Route exact path="/chart">
+            <Chart/>
           </Route>
           <Route exact path="/statistics">
             <Statistics/>
