@@ -49,6 +49,12 @@ const Nav = () => {
         <li>
           <NavLink to="/statistics" activeClassName="selected">
             <Icon name="statistics"/>
+            明细
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="/chart" activeClassName="selected">
+            <Icon name="chart"/>
             统计
           </NavLink>
         </li>
