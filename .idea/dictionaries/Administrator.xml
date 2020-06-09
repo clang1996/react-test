@@ -2,6 +2,9 @@
   <dictionary name="Administrator">
     <words>
       <w>clearfix</w>
+      <w>dayjs</w>
+      <w>echart</w>
+      <w>echarts</w>
       <w>svgo</w>
       <w>topbar</w>
     </words>

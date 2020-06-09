@@ -1,42 +1,52 @@
-@import-normalized;
+@import-normalized ;
 @import "helper";
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
-*::before,::after{
+
+*::before, ::after {
   box-sizing: border-box;
 }
-ul,ol{
+
+ul, ol {
   list-style: none;
 }
-a{
+
+a {
   text-decoration: none;
   color: inherit;
 }
-body{
-  font-family: $font-hei ;
+
+body {
+  font-family: $font-hei;
   line-height: 1.5;
   background: #f5f5f5;
 }
-input,button {
+
+input, button {
   font: inherit;
 }
-:focus{
+
+:focus {
   outline: none;
 }
-.clearfix::after{
+
+.clearfix::after {
   content: '';
   display: block;
   clear: both;
 }
-.icon{
+
+.icon {
   width: 1.5em;
   height: 1.5em;
 }
+
 .onLine {
   white-space: nowrap;
   overflow: hidden;
-  text-overflow:ellipsis;
+  text-overflow: ellipsis;
 }
+
