@@ -1,14 +1,9 @@
-import React, {useState} from 'react';
-import {Layout} from 'components/Layout';
-import {ReactEchart} from '../components/ReactEchart';
-import styled from 'styled-components';
-import {useRecords} from '../hooks/useRecords';
+import React from 'react';
+import {ReactEchart} from './ReactEchart';
+import {useRecords} from '../../hooks/useRecords';
 import dayjs from 'dayjs';
 
-const Topbar = styled.div`
-			height: 60px;
-			background: #4ebf80;
-`;
+
 const Chart = () => {
 		const {records} = useRecords();
 		const monthLastDay = dayjs().endOf('month').format('DD');
@@ -25,24 +20,20 @@ const Chart = () => {
 				}
 				for (let i = 0; i < expenseRecords.length; i++) {
 						const index = parseInt(dayjs(expenseRecords[i].createAt).format('MM'));
+						console.log(index);
+						console.log(dayjs());
 						expenseArray[index + 1] += expenseRecords[i].amount;
 				}
 				for (let i = 0; i < incomeRecords.length; i++) {
 						const index = parseInt(dayjs(incomeRecords[i].createAt).format('MM'));
-						incomeArray[index] += incomeRecords[i].amount;
+						incomeArray[index + 1] += incomeRecords[i].amount;
 				}
 				return {expenseArray, incomeArray, xArray};
 		};
 		return (
-			<Layout>
-					<Topbar></Topbar>
-					<div>
-
-							<ReactEchart
-								// @ts-ignore
-								value={array()}/>
-					</div>
-			</Layout>
+		<ReactEchart
+			// @ts-ignore
+			value={array()}/>
 		);
 };
 export {Chart};

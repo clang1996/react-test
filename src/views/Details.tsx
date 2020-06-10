@@ -33,7 +33,7 @@ const Item = styled.div`
 `;
 
 
-function Statistics() {
+function Details() {
 		const [type, setType] = useState<'+' | '-'>('-');
 		const {records} = useRecords();
 		const {getName} = useTags();
@@ -77,7 +77,7 @@ function Statistics() {
 								</DateWrapper>
 								<div>
 										{records.map(r => {
-												return <Item>
+												return <Item key={r.note}>
 														<div className="tags onLine">
 																{r.tagIds.map(tagId => <span key={tagId}>{getName(tagId)}</span>)
 																.reduce((result, span, index, array) =>
@@ -96,4 +96,4 @@ function Statistics() {
 		);
 }
 
-export {Statistics};
+export {Details};

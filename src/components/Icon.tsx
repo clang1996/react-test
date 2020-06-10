@@ -2,7 +2,7 @@ import React from 'react';
 
 require('icons/money.svg');
 require('icons/label.svg');
-require('icons/chart.svg');
+require('icons/count.svg');
 
 type Props = {
   name: string

@@ -8,9 +8,12 @@ export function ReactEchart(props: any) {
 		const {expenseArray, incomeArray, xArray} = props.value;
 		useEffect(() => {
 				container.current.style = `width: ${width}px;height:${height}px`;
-				const myChart = echarts.init(container.current);
+				const myChart = echarts.init(container.current, 'dark');
 				const option = {
-						tooltip: {},
+						tooltip: {
+								show: true,
+								trigger: 'axis'
+						},
 						legend: {
 								data: ['支出', '收入']
 						},
@@ -23,6 +26,19 @@ export function ReactEchart(props: any) {
 										rotate: -45
 								},
 								type: 'value'
+						},
+						visualMap: {
+								top: 10,
+								right: 10,
+								pieces: [{
+										gt: 50,
+										lte: 100,
+										color: '#ffde33'
+								}, {
+										gt: 100,
+										lte: 150,
+										color: '#ff9933'
+								}]
 						},
 						series: [{
 								name: '支出',

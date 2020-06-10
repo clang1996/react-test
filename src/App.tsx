@@ -7,11 +7,11 @@ import {
 } from 'react-router-dom';
 import {Tags} from './views/Tags';
 import {Money} from './views/Money';
-import {Statistics} from './views/Statistics';
+import {Details} from './views/Details';
 import {NoMatch} from './views/NoMatch';
 import styled from 'styled-components';
 import {Tag} from './views/Tag';
-import {Chart} from './views/Chart';
+import {Count} from './views/Count';
 
 
 const AppWrapper = styled.div`
@@ -32,11 +32,11 @@ function App() {
           <Route exact path="/money">
             <Money/>
           </Route>
-          <Route exact path="/chart">
-            <Chart/>
+          <Route exact path="/details">
+            <Details/>
           </Route>
-          <Route exact path="/statistics">
-            <Statistics/>
+          <Route exact path="/count">
+            <Count/>
           </Route>
           <Redirect exact from="/" to="/money"/>
           <Route path="*">

@@ -47,14 +47,14 @@ const Nav = () => {
           </NavLink>
         </li>
         <li>
-          <NavLink to="/statistics" activeClassName="selected">
-            <Icon name="statistics"/>
+          <NavLink to="/details" activeClassName="selected">
+            <Icon name="details"/>
             明细
           </NavLink>
         </li>
         <li>
-          <NavLink to="/chart" activeClassName="selected">
-            <Icon name="chart"/>
+          <NavLink to="/count" activeClassName="selected">
+            <Icon name="count"/>
             统计
           </NavLink>
         </li>
