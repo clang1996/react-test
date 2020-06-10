@@ -5,10 +5,7 @@ import styled from 'styled-components';
 import {RecordsItem, useRecords} from '../hooks/useRecords';
 import {useTags} from '../hooks/useTags';
 import day from 'dayjs';
-import {TypeWrapper} from '../components/TypeWrapper';
-//
-// const TypeWrapper = styled.div`
-// `;
+
 const DateWrapper = styled.h3`
     color: #4ebf80;
     margin-left: 16px;
@@ -66,9 +63,7 @@ function Details() {
 		};
 		return (
 			<Layout>
-					<TypeWrapper>
-							<TypeSection value={type} onChange={value => setType(value)}/>
-					</TypeWrapper>
+					<TypeSection value={type} onChange={value => setType(value)}/>
 					{array.map(([date, records]) =>
 						<div>
 								<DateWrapper>
