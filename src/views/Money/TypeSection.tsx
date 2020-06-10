@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import React, {useState} from 'react';
 
 const Wrapper = styled.section`
+    background: #4ebf80;
     font-size: 18px;
     > ul{
        display: flex;

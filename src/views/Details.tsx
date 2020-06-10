@@ -5,10 +5,10 @@ import styled from 'styled-components';
 import {RecordsItem, useRecords} from '../hooks/useRecords';
 import {useTags} from '../hooks/useTags';
 import day from 'dayjs';
-
-const TypeWrapper = styled.div`
-    background: #4ebf80;
-`;
+import {TypeWrapper} from '../components/TypeWrapper';
+//
+// const TypeWrapper = styled.div`
+// `;
 const DateWrapper = styled.h3`
     color: #4ebf80;
     margin-left: 16px;
