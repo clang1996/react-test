@@ -31,24 +31,24 @@ const Wrapper = styled.section`
     }
 `;
 type Props = {
-  value: '-' | '+',
-  onChange: (value: '-' | '+') => void
+		value: '-' | '+',
+		onChange: (value: '-' | '+') => void
 }
 const TypeSection: React.FC<Props> = (props) => {
-  const typeMap = {'-': '支出', '+': '收入'};
-  type Keys = keyof typeof typeMap
-  const [typeList] = useState<Keys[]>(['+', '-']);
-  const type = props.value;
-  return (
-    <Wrapper>
-        <ul>
-          {typeList.map(c =>
-            <li className={type === c ? 'selected' : ''}
-                onClick={() => {props.onChange(c);}}
-                key={c}
-            >{typeMap[c]}</li>)}
-        </ul>
-    </Wrapper>
-  );
+		const typeMap = {'-': '支出', '+': '收入'};
+		type Keys = keyof typeof typeMap
+		const [typeList] = useState<Keys[]>(['+', '-']);
+		const type = props.value;
+		return (
+			<Wrapper>
+					<ul>
+							{typeList.map(c =>
+								<li className={type === c ? 'selected' : ''}
+								    onClick={() => {props.onChange(c);}}
+								    key={c}
+								>{typeMap[c]}</li>)}
+					</ul>
+			</Wrapper>
+		);
 };
 export {TypeSection};

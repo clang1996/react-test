@@ -3,63 +3,155 @@ import {Layout} from '../components/Layout';
 import styled from 'styled-components';
 import {TypeSection} from './Money/TypeSection';
 import {ReactEchart} from './Count/ReactEchart';
+import {Button} from '../components/Button';
+import dayjs from 'dayjs';
+import {RecordsItem, useRecords} from '../hooks/useRecords';
+import day from 'dayjs';
+import {FlavorForm} from './Count/Time';
 
 
 const DetailWrapper = styled.div`
     background: #f5f5f5;
     display: flex;
-    flex-direction: column;
-    font-size: 18px;
+    font-size: 14px;
+    justify-content: space-between;
+    margin: 0 0 0 16px;
     > div {
-    		margin: 10px 16px;
+    		margin-top: 10px;
+    		>span{
+    				color: #555;
+    		}
     }
-`;
-const SelectWrapper = styled.div`
-    background: #f5f5f5;
-    > ul{
-      background: #4ebf80;
-      display: flex;
-      font-size: 18px;
-      justify-content: center;
-      flex-direction: row;
-      text-align: center;
-        > li{
-        	color: #f5f5f5;
-          width: 100px;
-          border:1px solid black;
-          padding: 0 20px;
-          	&.left{
-          		  border-radius: 5px 0 0 5px ;
-          	}
-            &.right{
-          			border-radius: 0 5px 5px 0;
-             }
-             &.selected{
-            		background: black;
-             }
-        }
+    > button {
+        color: #000;
+    		font-size: 14px;
     }
     
 `;
 
+type Group = {
+		type: string;
+		amount: number;
+}
+
+
 export function Count() {
 		const [type, setType] = useState<'+' | '-'>('-');
+		const [interval, setInterval] = useState<'week' | 'month' | 'year'>('week');
+		const hash: { [K: string]: RecordsItem[] } = {};
+		const {records} = useRecords();
+		const now = dayjs();
+		//拿到记录
+		const targetRecords = records.filter(r => r.type === type).filter(r => dayjs(r.createAt).isSame(now, interval));
+		targetRecords.forEach(r => {
+				const key = day(r.createAt).toISOString();
+				if (!(key in hash)) {
+						hash[key] = [];
+				}
+				hash[key].push(r);
+		});
+		const days = () => {
+				const [year, month] = [dayjs().year(), dayjs().month()];
+				const d = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+				if ((year % 4 === 0 && year % 100 !== 0) || (year % 100 === 0 && year % 400 === 0)) {
+						if (month === 1) {
+								return 29;
+						} else {
+								return d[month];
+						}
+				} else {
+						console.log(d[month]);
+						return d[month];
+				}
+
+		};
+		const groupByType = () => {
+				const tags: string[] = [];
+				let result: Group[] = [];
+				let r: RecordsItem;
+				for (r of targetRecords) {
+						const index = tags.indexOf(r.type);
+						if (index < 0) {
+								tags.push(r.type);
+								result.push({type: r.type, amount: r.amount,});
+						} else {
+								result[index].amount += r.amount;
+						}
+				}
+				console.log(result);
+				return result;
+		};
+		const groupByWeek = () => {
+				const keys = ['周日', '周一', '周二', '周三', '周四', '周五', '周六'];
+				const result = new Map<string, number>();
+				let i: number;
+				// 初始化
+				for (i = 0; i < keys.length; i++) {
+						result.set(keys[i], 0);
+				}
+				let r: RecordsItem;
+				for (r of records) {
+						const key = keys[dayjs(r.createAt).day()];
+						const amount = result.get(key) as number;
+						result.set(key, amount + r.amount);
+				}
+				return result;
+		};
+		const groupByMonth = () => {
+				const keys: string[] = [];
+				const result = new Map<string, number>();
+				let i: number;
+				// 初始化
+				for (i = 1; i < days(); i++) {
+						keys.push(i.toString());
+				}
+				for (i = 0; i < keys.length; i++) {
+						result.set(keys[i], 0);
+				}
+				let r: RecordsItem;
+				for (r of records) {
+						const key = dayjs(r.createAt).date().toString();
+						const amount = result.get(key) as number;
+						result.set(key, amount + r.amount);
+				}
+				console.log('result');
+				console.log(result);
+				return result;
+		};
+		const groupByYear = () => {
+				const keys = ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'];
+				const result = new Map<string, number>();
+				let i: number;
+				// 初始化
+				for (i = 0; i < keys.length; i++) {
+						result.set(keys[i], 0);
+				}
+				let r: RecordsItem;
+				for (r of records) {
+						const key = keys[dayjs(r.createAt).month()];
+						const amount = result.get(key) as number;
+						result.set(key, amount + r.amount);
+				}
+				return result;
+		};
+		const data = new Map<string, number>()
 		return (
 			<Layout>
-					<TypeSection value={type} onChange={value => setType(value)}></TypeSection>
-					<SelectWrapper>
-							<ul>
-									<li className="selected left">周</li>
-									<li>月</li>
-									<li className="right">年</li>
-							</ul>
-					</SelectWrapper>
+					<TypeSection
+						value={type}
+						onChange={type => setType(type)}
+					>
+					</TypeSection>
 					<DetailWrapper>
-							<div><span>本周</span></div>
-							<hr/>
 							<div><span>总支出: ￥2000</span></div>
+
+							<Button >
+									<FlavorForm/>
+							</Button>
 					</DetailWrapper>
-					<ReactEchart/>
+					<hr/>
+
+					<ReactEchart option={data}/>
 			</Layout>
 		);
 }
