@@ -34,22 +34,21 @@ type Group = {
 		amount: number;
 }
 
-
 export function Count() {
 		const [type, setType] = useState<'+' | '-'>('-');
 		const [interval, setInterval] = useState<'week' | 'month' | 'year'>('week');
-		const hash: { [K: string]: RecordsItem[] } = {};
+		// const hash: { [K: string]: RecordsItem[] } = {};
 		const {records} = useRecords();
 		const now = dayjs();
 		//拿到记录
 		const targetRecords = records.filter(r => r.type === type).filter(r => dayjs(r.createAt).isSame(now, interval));
-		targetRecords.forEach(r => {
-				const key = day(r.createAt).toISOString();
-				if (!(key in hash)) {
-						hash[key] = [];
-				}
-				hash[key].push(r);
-		});
+		// targetRecords.forEach(r => {
+		// 		const key = day(r.createAt).toISOString();
+		// 		if (!(key in hash)) {
+		// 				hash[key] = [];
+		// 		}
+		// 		hash[key].push(r);
+		// });
 		const days = () => {
 				const [year, month] = [dayjs().year(), dayjs().month()];
 				const d = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
@@ -66,21 +65,23 @@ export function Count() {
 
 		};
 		const groupByType = () => {
-				const tags: string[] = [];
+				const types: string[] = [];
 				let result: Group[] = [];
 				let r: RecordsItem;
 				for (r of targetRecords) {
-						const index = tags.indexOf(r.type);
+						const index = types.indexOf(r.type);
 						if (index < 0) {
-								tags.push(r.type);
+								types.push(r.type);
 								result.push({type: r.type, amount: r.amount,});
 						} else {
 								result[index].amount += r.amount;
 						}
 				}
+				console.log('result');
 				console.log(result);
 				return result;
 		};
+		groupByType();
 		const groupByWeek = () => {
 				const keys = ['周日', '周一', '周二', '周三', '周四', '周五', '周六'];
 				const result = new Map<string, number>();
@@ -134,7 +135,6 @@ export function Count() {
 				}
 				return result;
 		};
-		const data = new Map<string, number>()
 		return (
 			<Layout>
 					<TypeSection
@@ -144,14 +144,12 @@ export function Count() {
 					</TypeSection>
 					<DetailWrapper>
 							<div><span>总支出: ￥2000</span></div>
-
-							<Button >
+							<Button>
 									<FlavorForm/>
 							</Button>
 					</DetailWrapper>
 					<hr/>
-
-					<ReactEchart option={data}/>
+					<ReactEchart/>
 			</Layout>
 		);
 }
