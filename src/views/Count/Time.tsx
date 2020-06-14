@@ -5,7 +5,7 @@ const Wrapper = styled.select`
 		border:none;
 		border-radius: 5px;
 		background: #4ebf80;
-		font-size: 18px;
+		font-size: 14px;
 `
 class FlavorForm extends React.Component {
 		constructor(props: any) {

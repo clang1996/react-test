@@ -8,6 +8,7 @@ export function ReactEchart() {
 		const height = (document.documentElement.clientWidth) * 0.8;
 		useEffect(() => {
 				container.current.style = `width: ${width}px;height:${height}px`;
+				// console.log(container.current);
 				const chart = echarts.init(container.current, 'dark');
 				const option = {
 						grid: {
