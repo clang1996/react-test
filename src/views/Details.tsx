@@ -64,15 +64,15 @@ function Details() {
 		return (
 			<Layout>
 					<TypeSection value={type} onChange={value => setType(value)}/>
-					{array.map(([date, records]) =>
-						<div>
+					{array.map(([date, records],index) =>
+						<div key={index}>
 								<DateWrapper>
 										{showDate(date)}
 										{}
 								</DateWrapper>
 								<div>
 										{records.map(r => {
-												return <Item key={r.note}>
+												return <Item key={r.createAt}>
 														<div className="tags onLine">
 																{r.tagIds.map(tagId => <span key={tagId}>{getName(tagId)}</span>)
 																.reduce((result, span, index, array) =>
