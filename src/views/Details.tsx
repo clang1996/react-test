@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import {RecordsItem, useRecords} from '../hooks/useRecords';
 import {useTags} from '../hooks/useTags';
 import day from 'dayjs';
+import {Modal} from './Detail/Modal';
 
 const DateWrapper = styled.h3`
     color: #4ebf80;
@@ -18,7 +19,13 @@ const Item = styled.div`
     line-height: 20px;
     padding: 10px 16px;
     > div{
-      width: 33.33%;
+      width: 25%;
+      > button{
+      	margin-left: 30px;
+      	border-radius:5px;
+      	padding: 0 5px;
+      	//border: 1px solid red;
+      }
     }
     > .note{
       color: #aaa;  
@@ -64,7 +71,7 @@ function Details() {
 		return (
 			<Layout>
 					<TypeSection value={type} onChange={value => setType(value)}/>
-					{array.map(([date, records],index) =>
+					{array.map(([date, records], index) =>
 						<div key={index}>
 								<DateWrapper>
 										{showDate(date)}
@@ -82,6 +89,7 @@ function Details() {
 														<div className="amount">
 																￥{r.amount}
 														</div>
+														<div><Modal/></div>
 												</Item>;
 										})}
 								</div>
