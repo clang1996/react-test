@@ -6,6 +6,7 @@ import {RecordsItem, useRecords} from '../hooks/useRecords';
 import {useTags} from '../hooks/useTags';
 import day from 'dayjs';
 import {Modal} from './Detail/Modal';
+import {useHistory} from 'react-router-dom';
 
 const DateWrapper = styled.h3`
     color: #4ebf80;
@@ -65,9 +66,10 @@ function Details() {
 				} else if (day(date).isSame(now.subtract(2, 'day'), 'day')) {
 						return '前天';
 				} else {
-						return day(date).format('YYYY年MM月DD日');
+						return day(date).format('MM月DD日');
 				}
 		};
+
 		return (
 			<Layout>
 					<TypeSection value={type} onChange={value => setType(value)}/>
@@ -91,9 +93,9 @@ function Details() {
 														</div>
 														<div className="modal">
 																<Modal
-																	children={'内容'}
-																	onOk={()=>{}}
-																	title={'标题'}/>
+																	children={[records[0].amount.toString(),records[0].note?records[0].note:'没有备注']}
+																	title={day(date).format('YYYY年MM月DD日')}
+																	/>
 														</div>
 												</Item>;
 										})}

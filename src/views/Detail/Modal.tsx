@@ -31,9 +31,12 @@ const Container = styled.div`
      >.body{
        margin: 30px 0;
        padding: 30px;
-       font-size: 14px;
+       font-size: 18px;
        overflow: hidden;
        text-overflow:ellipsis;
+       > div{
+       		padding: 10px 0;
+       }
      }
      .footer{
         border-top: 1px solid #e8e8e8;
@@ -62,21 +65,22 @@ const Container = styled.div`
      }
 `;
 type Props = {
-		children: React.ReactChild | React.ReactChildren | React.ReactElement[],
-		title: React.ReactChild,
-		onOk: () => void,
+		children: React.ReactChild[] ,  //records内容
+		title: React.ReactChild,  //标题
+		onOk?: () => void,
 		onCancel?: () => void,
 }
 const Modal = (props: Props) => {
 		const [visible, setVisible] = useState(false);
 		const onclick = () => {
 				setVisible(true);
-				setTimeout(() => {
-						setVisible(false);
-				}, 2000);
+				// setTimeout(() => {
+				// 		setVisible(false);
+				// }, 2000);
 		};
-		const onCancel = () => {
 
+		const onCancel = () => {
+				setVisible(false);
 		};
 		const onOk = () => {
 		};
@@ -88,13 +92,16 @@ const Modal = (props: Props) => {
 								<Mask/>
 								<Container>
 										<header className="title">
-												{props.title}
+												 {props.title}
 										</header>
 										<section className="body">
-												{props.children}
+												<div>金额: {props.children[0]}</div>
+												<div>备注: {props.children[1]}</div>
 										</section>
 										<footer className="footer">
-												<button className="cancel btn" onClick={onCancel}>取消</button>
+												<button className="cancel btn"
+												        onClick={()=> {onCancel();console.log('fuck');
+												}}>取消</button>
 												<button className="ok btn" onClick={onOk}>确认</button>
 										</footer>
 								</Container>
