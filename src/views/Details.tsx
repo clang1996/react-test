@@ -20,13 +20,13 @@ const Item = styled.div`
     padding: 10px 16px;
     > div{
       width: 25%;
-      > button{
-      	margin-left: 30px;
-      	border-radius:5px;
-      	padding: 0 5px;
-      	//border: 1px solid red;
-      }
+      
     }
+    > .modal{
+      	padding: 0 0 0 55px;
+      	border:none;
+      }
+    
     > .note{
       color: #aaa;  
       padding-left: 35px ;
@@ -89,7 +89,12 @@ function Details() {
 														<div className="amount">
 																￥{r.amount}
 														</div>
-														<div><Modal/></div>
+														<div className="modal">
+																<Modal
+																	children={'内容'}
+																	onOk={()=>{}}
+																	title={'标题'}/>
+														</div>
 												</Item>;
 										})}
 								</div>

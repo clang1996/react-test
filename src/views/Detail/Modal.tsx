@@ -41,7 +41,7 @@ const Container = styled.div`
      		padding: 10px 30px;
      		display: flex;
      		>.btn {
-     			flex: 1; 
+     			flex-grow:  1; 
      			height: 32px; 
      		  &.cancel{
       	  	margin-right: 30px;
@@ -61,14 +61,13 @@ const Container = styled.div`
       	
      }
 `;
-interface IModalProps {  children: React.ReactChild | React.ReactChildren |  React.ReactElement<any>[],
-		title?: React.ReactChild,  visible: boolean,
-		onOk?: () => void,
+type Props = {
+		children: React.ReactChild | React.ReactChildren | React.ReactElement[],
+		title: React.ReactChild,
+		onOk: () => void,
 		onCancel?: () => void,
-		okText?: string,
-		cancelText?: string,
 }
-const Modal = () => {
+const Modal = (props: Props) => {
 		const [visible, setVisible] = useState(false);
 		const onclick = () => {
 				setVisible(true);
@@ -83,16 +82,16 @@ const Modal = () => {
 		};
 		return (
 			<div>
-					<button onClick={onclick}>Modal</button>
+					<div onClick={onclick}><strong>...</strong></div>
 					{visible ?
 						<div>
 								<Mask/>
 								<Container>
 										<header className="title">
-												标题
+												{props.title}
 										</header>
 										<section className="body">
-												121111111
+												{props.children}
 										</section>
 										<footer className="footer">
 												<button className="cancel btn" onClick={onCancel}>取消</button>
