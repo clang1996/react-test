@@ -136,9 +136,6 @@ export function Count() {
 					</TypeSection>
 					<DetailWrapper>
 							<div><span>合计: ￥2000</span></div>
-							<Button>
-									<FlavorForm/>
-							</Button>
 					</DetailWrapper>
 					<hr/>
 					<ReactEchart />
