@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import styled from 'styled-components';
+import {Icon} from '../../components/Icon';
 
 const Mask = styled.div`
 		position: fixed;  
@@ -36,6 +37,9 @@ const Container = styled.div`
        text-overflow:ellipsis;
        > div{
        		padding: 10px 0;
+       		 > span{
+       		    color: #aaaaaa;
+       		 }
        }
      }
      .footer{
@@ -86,7 +90,7 @@ const Modal = (props: Props) => {
 		};
 		return (
 			<div>
-					<div onClick={onclick}><strong>...</strong></div>
+					<div onClick={onclick}><Icon name="more"/></div>
 					{visible ?
 						<div>
 								<Mask/>
@@ -95,8 +99,8 @@ const Modal = (props: Props) => {
 												 {props.title}
 										</header>
 										<section className="body">
-												<div>金额: {props.children[0]}</div>
-												<div>备注: {props.children[1]}</div>
+												<div>金额: ￥{props.children[0]}</div>
+												<div>备注: <span>{props.children[1]}</span></div>
 										</section>
 										<footer className="footer">
 												<button className="cancel btn"

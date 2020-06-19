@@ -51,7 +51,7 @@ export function Count() {
 								return d[month];
 						}
 				} else {
-						console.log(d[month]);
+						// console.log(d[month]);
 						return d[month];
 				}
 
@@ -64,8 +64,8 @@ export function Count() {
 								result.push({type: r.type, amount: r.amount,});
 						}
 				}
-				console.log('result');
-				console.log(result);
+				// console.log('result');
+				// console.log(result);
 				return result;
 		};
 		// groupByType();
@@ -80,9 +80,9 @@ export function Count() {
 				let r: RecordsItem;
 				for (r of records) {
 						const key = keys[dayjs(r.createAt).day()];
-						console.log(key);
+						// console.log(key);
 						const amount = result.get(key) as number;
-						console.log(amount);
+						// console.log(amount);
 						result.set(key, amount + r.amount);
 				}
 				// console.log('result');
@@ -107,8 +107,8 @@ export function Count() {
 						const amount = result.get(key) as number;
 						result.set(key, amount + r.amount);
 				}
-				console.log('result');
-				console.log(result);
+				// console.log('result');
+				// console.log(result);
 				return result;
 		};
 		const groupByYear = () => {

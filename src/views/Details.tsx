@@ -6,7 +6,6 @@ import {RecordsItem, useRecords} from '../hooks/useRecords';
 import {useTags} from '../hooks/useTags';
 import day from 'dayjs';
 import {Modal} from './Detail/Modal';
-import {useHistory} from 'react-router-dom';
 
 const DateWrapper = styled.h3`
     color: #4ebf80;
@@ -18,11 +17,14 @@ const Item = styled.div`
     font-size: 18px;
     background: #fff;
     line-height: 20px;
-    padding: 10px 16px;
+    padding: 8px 16px;
     > div{
       width: 25%;
-      
-    }
+      }
+      > .tags{
+      //border:1px solid red;
+      padding-top:5px ;
+      }
     > .modal{
       	padding: 0 0 0 55px;
       	border:none;
@@ -87,10 +89,10 @@ function Details() {
 																.reduce((result, span, index, array) =>
 																	result.concat(index < array.length - 1 ? [span, ' '] : [span]), [] as ReactNode[])}
 														</div>
-														{r.note ? <div className="note">{r.note}</div> : <div className="note onLine">无备注哦</div>}
-														<div className="amount">
-																￥{r.amount}
-														</div>
+														{/*{r.note ? <div className="note">{r.note}</div> : <div className="note onLine">无备注哦</div>}*/}
+														{/*<div className="amount">*/}
+														{/*		￥{r.amount}*/}
+														{/*</div>*/}
 														<div className="modal">
 																<Modal
 																	children={[records[0].amount.toString(),records[0].note?records[0].note:'没有备注']}
