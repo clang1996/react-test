@@ -52,12 +52,12 @@ const Nav = () => {
             明细
           </NavLink>
         </li>
-        <li>
-          <NavLink to="/count" activeClassName="selected">
-            <Icon name="count"/>
-            统计
-          </NavLink>
-        </li>
+        {/*<li>*/}
+        {/*  <NavLink to="/count" activeClassName="selected">*/}
+        {/*    <Icon name="count"/>*/}
+        {/*    统计*/}
+        {/*  </NavLink>*/}
+        {/*</li>*/}
       </ul>
     </NavWrapper>
   );

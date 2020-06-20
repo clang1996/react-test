@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import styled from 'styled-components';
 import {Icon} from '../../components/Icon';
+import {Input} from '../../components/Input';
 
 const Mask = styled.div`
 		position: fixed;  
@@ -69,7 +70,7 @@ const Container = styled.div`
      }
 `;
 type Props = {
-		children: React.ReactChild[] ,  //records内容
+		children: React.ReactChild[],  //records内容
 		title: React.ReactChild,  //标题
 		onOk?: () => void,
 		onCancel?: () => void,
@@ -88,6 +89,7 @@ const Modal = (props: Props) => {
 		};
 		const onOk = () => {
 		};
+
 		return (
 			<div>
 					<div onClick={onclick}><Icon name="more"/></div>
@@ -100,7 +102,11 @@ const Modal = (props: Props) => {
 										</header>
 										<section className="body">
 												<div>金额: ￥{props.children[0]}</div>
-												<div>备注: <span>{props.children[1]}</span></div>
+												<div> <Input label="备注: "
+												             placeholder="没有备注噢~"
+												             value={props.children[1].toString()}
+												             onChange={() => {}}
+												/></div>
 										</section>
 										<footer className="footer">
 												<button className="cancel btn"

@@ -15,8 +15,8 @@ type Props = {
 const NoteSection: React.FC<Props> = (props) => {
   const note = props.value;
   const onChange: ChangeEventHandler<HTMLInputElement> = (e) => {
-    if (e.target.value.length > 9) {
-      window.alert('备注不要太长哦，9个字以内就好啦~');
+    if (e.target.value.length > 20) {
+      window.alert('备注不要太长哦，20个字以内就好啦~');
       return false;
     }
     props.onChange(e.target.value);

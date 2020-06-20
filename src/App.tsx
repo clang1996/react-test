@@ -35,9 +35,9 @@ function App() {
           <Route exact path="/details">
             <Details/>
           </Route>
-          <Route exact path="/count">
-            <Count/>
-          </Route>
+          {/*<Route exact path="/count">*/}
+          {/*  <Count/>*/}
+          {/*</Route>*/}
           <Redirect exact from="/" to="/money"/>
           <Route path="*">
             <NoMatch/>

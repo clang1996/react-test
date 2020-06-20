@@ -84,7 +84,7 @@ function Details() {
 								<div>
 										{records.map(r => {
 												return <Item key={r.createAt}>
-														<div className="tags onLine">
+														<div className="tags ">
 																{r.tagIds.map(tagId => <span key={tagId}>{getName(tagId)}</span>)
 																.reduce((result, span, index, array) =>
 																	result.concat(index < array.length - 1 ? [span, ' '] : [span]), [] as ReactNode[])}
@@ -95,7 +95,7 @@ function Details() {
 														{/*</div>*/}
 														<div className="modal">
 																<Modal
-																	children={[records[0].amount.toString(),records[0].note?records[0].note:'没有备注']}
+																	children={[records[0].amount.toString(),records[0].note?records[0].note:'没有写备注噢~']}
 																	title={day(date).format('YYYY年MM月DD日')}
 																	/>
 														</div>
