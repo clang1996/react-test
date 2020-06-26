@@ -22,7 +22,8 @@ const Item = styled.div`
       width: 25%;
       }
       > .tags{
-      //border:1px solid red;
+      width: 50%;
+      border:1px solid red;
       padding-top:5px ;
       }
     > .modal{
@@ -89,15 +90,12 @@ function Details() {
 																.reduce((result, span, index, array) =>
 																	result.concat(index < array.length - 1 ? [span, ' '] : [span]), [] as ReactNode[])}
 														</div>
-														{/*{r.note ? <div className="note">{r.note}</div> : <div className="note onLine">无备注哦</div>}*/}
-														{/*<div className="amount">*/}
-														{/*		￥{r.amount}*/}
-														{/*</div>*/}
+
 														<div className="modal">
 																<Modal
-																	children={[records[0].amount.toString(),records[0].note?records[0].note:'没有写备注噢~']}
+																	children={[records[0].amount.toString(), records[0].note ? records[0].note : '没有写备注噢~']}
 																	title={day(date).format('YYYY年MM月DD日')}
-																	/>
+																/>
 														</div>
 												</Item>;
 										})}

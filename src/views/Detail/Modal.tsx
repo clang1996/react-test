@@ -88,6 +88,7 @@ const Modal = (props: Props) => {
 				setVisible(false);
 		};
 		const onOk = () => {
+				setVisible(false);
 		};
 
 		return (
@@ -110,7 +111,7 @@ const Modal = (props: Props) => {
 										</section>
 										<footer className="footer">
 												<button className="cancel btn"
-												        onClick={()=> {onCancel();console.log('fuck');
+												        onClick={()=> {onCancel()
 												}}>取消</button>
 												<button className="ok btn" onClick={onOk}>确认</button>
 										</footer>
