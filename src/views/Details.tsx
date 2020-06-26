@@ -23,7 +23,6 @@ const Item = styled.div`
       }
       > .tags{
       width: 50%;
-      border:1px solid red;
       padding-top:5px ;
       }
     > .modal{
