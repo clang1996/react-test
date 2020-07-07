@@ -18,8 +18,8 @@ const useTags = () => {
 								window.alert('标签名不能为空哦~');
 								return false;
 						}
-						if (tagName.length > 8) {
-								window.alert('标签名长度不能大于8个字哦~');
+						if (tagName.length > 16) {
+								window.alert('标签名长度不能大于16个字哦~');
 								return false;
 						}
 						setTags([...tags, {id: createId(), name: tagName}]);

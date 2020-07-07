@@ -4,7 +4,7 @@ const Label = styled.label`
     display: flex;
     align-items: center;
         > span{
-        margin-right: 16px;
+        margin-right: 4px;
         white-space: nowrap;
         }
         > input {

@@ -8,48 +8,48 @@ import {TypeSection} from './Money/TypeSection';
 import {useRecords} from '../hooks/useRecords';
 
 const MyLayout = styled(Layout)`
-    display: flex;
+		display: flex;
     flex-direction: column;
 `;
 const TypeWrapper = styled.div`
-       background: #4ebf80;
-`
+		background: #4ebf80;
+`;
 
 type Type = '-' | '+'
 
 const defaultFormData = {
-  tagIds: [] as number[],
-  note: '',
-  type: '-' as Type,
-  amount: 0
+		tagIds: [] as number[],
+		note: '',
+		type: '-' as Type,
+		amount: 0
 };
 
 function Money() {
-  const [selected, setSelected] = useState(defaultFormData);
-  const onChange = (obj: Partial<typeof selected>) => {   //obj是selected类型的部分类型
-    setSelected({...selected, ...obj});
-  };
-  const {addRecord} = useRecords();
+		const [selected, setSelected] = useState(defaultFormData);
+		const onChange = (obj: Partial<typeof selected>) => {   //obj是selected类型的部分类型
+				setSelected({...selected, ...obj});
+		};
+		const {addRecord} = useRecords();
 
-  const submit = () => {
-    if (addRecord(selected)) {
-      alert('保存成功');
-      setSelected(defaultFormData);
-    }
-  };
-  return (
-    <MyLayout>
-      <TypeWrapper>
-        <TypeSection value={selected.type} onChange={type => onChange({type})}/>
-      </TypeWrapper>
-      <TagsSection value={selected.tagIds} onChange={tagIds => onChange({tagIds})}/>
-      <NoteSection value={selected.note} onChange={note => onChange({note})}/>
+		const submit = () => {
+				if (addRecord(selected)) {
+						alert('保存成功');
+						setSelected(defaultFormData);
+				}
+		};
+		return (
+			<MyLayout>
+					<TypeWrapper>
+							<TypeSection value={selected.type} onChange={type => onChange({type})}/>
+					</TypeWrapper>
+					<TagsSection value={selected.tagIds} onChange={tagIds => onChange({tagIds})}/>
+					<NoteSection value={selected.note} onChange={note => onChange({note})}/>
 
-      <NumberPadSection value={selected.amount}
-                        onOk={submit}
-                        onChange={amount => onChange({amount})}/>
-    </MyLayout>
-  );
+					<NumberPadSection value={selected.amount}
+					                  onOk={submit}
+					                  onChange={amount => onChange({amount})}/>
+			</MyLayout>
+		);
 }
 
 export {Money};

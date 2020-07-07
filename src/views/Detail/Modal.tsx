@@ -102,8 +102,8 @@ const Modal = (props: Props) => {
 												 {props.title}
 										</header>
 										<section className="body">
-												<div>金额: ￥{props.children[0]}</div>
-												<div> <Input label="备注: "
+												<div>金额:￥{props.children[0]}</div>
+												<div> <Input label="备注:"
 												             placeholder="没有备注噢~"
 												             value={props.children[1].toString()}
 												             onChange={() => {}}
